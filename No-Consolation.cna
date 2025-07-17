@@ -123,6 +123,7 @@ alias noconsolation
         else if (@_[$i] eq "--list-pes" || @_[$i] eq "-lpe")
         {
             $list_pes = 1;
+            blog($1, "[+] List PES ?: " . $list_pes);
         }
         else if (@_[$i] eq "--unload-pe" || @_[$i] eq "-upe")
         {
@@ -309,6 +310,14 @@ alias noconsolation
         }
     }
 
+    blog($bid, "[DEBUG] METHOD: " . $method);
+    blog($bid, "[DEBUG] USE_UNICODE: " . $use_unicode);
+    blog($bid, "[DEBUG] NO OUTPUT: " . $nooutput);
+    blog($bid, "[DEBUG] ALLOC_CONSOLE: " . $alloc_console);
+    blog($bid, "[DEBUG] CLOSE_HANDLES: " . $close_handles);
+    blog($bid, "[DEBUG] DONT_SAVE: " . $dont_save);
+    blog($bid, "[DEBUG] LIST_PES: " . $list_pes);
+
     runpe($bid, $pename, $pepath, $pebytes, $path, $local, $timeout, $headers, $cmdline, $method, $use_unicode, $nooutput, $alloc_console, $close_handles, $free_libs, $dont_save, $list_pes, $unload_pe, mynick(), tstamp(ticks()), $link_to_peb, $dont_unload, $load_all_deps, $load_all_deps_but, $load_deps, $search_paths, $inthread);
 }
 
@@ -325,7 +334,23 @@ sub runpe{
     }
 
     # Pack the arguments
-    $args = bof_pack($1, "ZzZbziiiZzziiiziiizzziiizzzi", $2 $2, $3, $4, $5, $6, $7, $8, $9, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27);
+    # $2: PENAME
+    # $3: PEPATH
+    # $4: PEBYTES
+    # $5: PATH
+    # $6: LOCAL
+    # $7: TIMEOUT
+    # $8: HEADERS
+    # $9: CMDLINE
+    # $10: METHOD
+    # $11: USE_UNICODE
+    # $12: NOOUTPUT
+    # $13: ALLOC_CONSOLE
+    # $14: CLOSE_HANDLES
+    # $15: FREE_LIBS
+    # $16: DONT_SAVE
+    # $17: LIST_PES
+    $args = bof_pack($1, "ZzZbziiiZzziiiiziizzziiizzzi", $2 $2, $3, $4, $5, $6, $7, $8, $9, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27);
 
     # Execute BOF
     beacon_inline_execute($1, $data, "go", $args);

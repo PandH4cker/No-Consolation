@@ -51,42 +51,86 @@ int go(IN PCHAR Buffer, IN ULONG Length)
     BeaconDataParse(&parser, Buffer, Length);
     pe_wname      = (LPWSTR)BeaconDataExtract(&parser, NULL);
     pe_wname      = pe_wname[0] ? pe_wname : NULL;
+
     pe_name       = BeaconDataExtract(&parser, NULL);
     pe_name       = pe_name[0] ? pe_name : NULL;
+
     pe_wpath      = (LPWSTR)BeaconDataExtract(&parser, NULL);
     pe_wpath      = pe_wpath[0] ? pe_wpath : NULL;
+
     pe_bytes      = BeaconDataExtract(&parser, &pe_length);
+
     pe_path       = BeaconDataExtract(&parser, NULL);
     pe_path       = pe_path[0] ? pe_path : NULL;
+    
     local         = BeaconDataInt(&parser);
+
     timeout       = BeaconDataInt(&parser);
+
     headers       = BeaconDataInt(&parser);
+
     cmdwline      = (LPWSTR)BeaconDataExtract(&parser, NULL);
+
     cmdline       = BeaconDataExtract(&parser, NULL);
+
     method        = BeaconDataExtract(&parser, NULL);
+
     use_unicode   = BeaconDataInt(&parser);
+
     nooutput      = BeaconDataInt(&parser);
+
     alloc_console = BeaconDataInt(&parser);
+
     close_handles = BeaconDataInt(&parser);
+
     unload_libs   = BeaconDataExtract(&parser, NULL);
-    unload_libs   = unload_libs[0] ? unload_libs : NULL;
+    if (unload_libs)
+    {
+        unload_libs   = unload_libs[0] ? unload_libs : NULL;
+    }
+
     dont_save     = BeaconDataInt(&parser);
     list_pes      = BeaconDataInt(&parser);
+    
     unload_pe     = BeaconDataExtract(&parser, NULL);
-    unload_pe     = unload_pe[0] ? unload_pe : NULL;
+    if (unload_pe)
+    {
+        unload_pe     = unload_pe[0] ? unload_pe : NULL;
+    }
+
     username      = BeaconDataExtract(&parser, NULL);
-    username      = username[0] ? username : NULL;
+    if (username)
+    {
+        username      = username[0] ? username : NULL;
+    }
+
     loadtime      = BeaconDataExtract(&parser, NULL);
-    loadtime      = loadtime[0] ? loadtime : NULL;
+    if (loadtime)
+    {
+        loadtime      = loadtime[0] ? loadtime : NULL;
+    }
+
     link_to_peb   = BeaconDataInt(&parser);
     dont_unload   = BeaconDataInt(&parser);
     load_all_deps = BeaconDataInt(&parser);
     load_all_deps_but = BeaconDataExtract(&parser, NULL);
-    load_all_deps_but = load_all_deps_but[0] ? load_all_deps_but : NULL;
+    if (load_all_deps_but)
+    {
+        load_all_deps_but = load_all_deps_but[0] ? load_all_deps_but : NULL;
+    }
+
     load_deps     = BeaconDataExtract(&parser, NULL);
-    load_deps     = load_deps[0] ? load_deps : NULL;
+    if (load_deps)
+    {
+        load_deps     = load_deps[0] ? load_deps : NULL;
+    }
+
     search_paths  = BeaconDataExtract(&parser, NULL);
-    search_paths  = search_paths[0] ? search_paths : NULL;
+    if (search_paths)
+    {
+        search_paths  = search_paths[0] ? search_paths : NULL;
+    }
+    
     inthread      = BeaconDataInt(&parser);
 
     peinfo = intAlloc(sizeof(LOADED_PE_INFO));
