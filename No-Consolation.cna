@@ -123,7 +123,6 @@ alias noconsolation
         else if (@_[$i] eq "--list-pes" || @_[$i] eq "-lpe")
         {
             $list_pes = 1;
-            blog($1, "[+] List PES ?: " . $list_pes);
         }
         else if (@_[$i] eq "--unload-pe" || @_[$i] eq "-upe")
         {
