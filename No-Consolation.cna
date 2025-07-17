@@ -310,14 +310,6 @@ alias noconsolation
         }
     }
 
-    blog($bid, "[DEBUG] METHOD: " . $method);
-    blog($bid, "[DEBUG] USE_UNICODE: " . $use_unicode);
-    blog($bid, "[DEBUG] NO OUTPUT: " . $nooutput);
-    blog($bid, "[DEBUG] ALLOC_CONSOLE: " . $alloc_console);
-    blog($bid, "[DEBUG] CLOSE_HANDLES: " . $close_handles);
-    blog($bid, "[DEBUG] DONT_SAVE: " . $dont_save);
-    blog($bid, "[DEBUG] LIST_PES: " . $list_pes);
-
     runpe($bid, $pename, $pepath, $pebytes, $path, $local, $timeout, $headers, $cmdline, $method, $use_unicode, $nooutput, $alloc_console, $close_handles, $free_libs, $dont_save, $list_pes, $unload_pe, mynick(), tstamp(ticks()), $link_to_peb, $dont_unload, $load_all_deps, $load_all_deps_but, $load_deps, $search_paths, $inthread);
 }
 
